@@ -1,6 +1,17 @@
 <html>
     <script>
         //RPS JS Code
-        
+        function computerPlay() {
+            let rpsSelect = Math.floor(Math.random() * Math.floor(3));
+            if (rpsSelect == 0) {
+                return "Rock";
+            }
+            else if (rpsSelect == 1) {
+                return "Paper";
+            }
+            else {
+                return "Scissors";
+            }
+        }
     </script>
 </html>
