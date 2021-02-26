@@ -1,6 +1,8 @@
 <html>
     <script>
-        //RPS JS Code
+        //Function Declaration
+
+        //Makes random computer decision
         function computerPlay() {
             let rpsSelect = Math.floor(Math.random() * Math.floor(3));
             if (rpsSelect == 0) {
@@ -13,5 +15,70 @@
                 return "Scissors";
             }
         }
+
+        //Plays a game of RPS and declares winner/loser
+        function playRps(playerSelection, computerSelection) {
+            let playerSelect = playerSelection.toLowerCase();
+            let computerSelect = computerSelection.toLowerCase();
+            while (playerSelect == 'rock') {
+                if (playerSelect == computerSelect) {
+                    return "You tied!";
+                }
+                else if (computerSelect == 'paper') {
+                    computerScore += 1;
+                    return "You Lose! Paper wraps Rock";
+                }
+                else {
+                    playerScore += 1;
+                    return "You Win! Rock smashes Scissors";
+                }
+            }
+            while (playerSelect == 'paper') {
+                if (playerSelect == computerSelect) {
+                    return "You tied!";
+                }
+                else if (computerSelect == 'scissors') {
+                    computerScore += 1;
+                    return "You Lose! Scissors cuts Paper";
+                }
+                else {
+                    playerScore += 1;
+                    return "You Win! Paper wraps Rock";
+                }
+            }
+            while (playerSelect == 'scissors') {
+                if (playerSelect == computerSelect) {
+                    return "You tied!";
+                }
+                else if (computerSelect == 'rock') {
+                    computerScore += 1;
+                    return "You Lose! Rock smashes Scissors";
+                }
+                else {
+                    playerScore += 1;
+                    return "You Win! Scissors cuts Paper";
+                }
+            }
+        }
+
+        function game() {
+            for (i = 0; i < 5; i++) {
+                let playerSelection = prompt("Rock, Paper, or Scissors");
+                let computerSelection = computerPlay();
+                console.log(playRps(playerSelection, computerSelection));
+            }
+            if (playerScore > computerScore) {
+                return `Player wins ${playerScore} to ${computerScore}`;
+            }
+            else if (computerScore > playerScore) {
+                return `Computer wins ${computerScore} to ${playerScore}`;
+            }
+            else
+                return `Tie game ${playerScore} to ${computerScore}`;
+        }
+        //Main Body
+        let playerScore = 0;
+        let computerScore = 0;
+        console.log(game());
     </script>
 </html>
