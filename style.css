@@ -1,0 +1,98 @@
+body {
+    background-color: black;
+}
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 40px;
+}
+
+.score {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    padding-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+button {
+    width: 75px;
+    height: 75px;
+    background-color: pink;
+    border-radius: 25px;
+    outline:none;
+    border-color: red;
+    border-width: 2px;
+}
+
+#rock {
+    background-image: url(pictures/Rock2.png);
+    background-size: 100% 100%;
+}
+
+#paper {
+    background-image: url(pictures/Paper2.png);
+    background-size: 100% 100%;
+}
+
+#scissors {
+    background-image: url(pictures/Scissors2.png);
+    background-size: 100% 100%;
+}
+
+#rock:hover {
+    box-shadow: 0 0 1rem #ffc600;
+}
+
+#paper:hover {
+    box-shadow: 0 0 1rem #ffc600;
+}
+
+#scissors:hover {
+    box-shadow: 0 0 1rem #ffc600;
+}
+
+#compRock {
+    background-image: url(pictures/Rock2.png);
+    background-size: 100% 100%;
+}
+
+#compPaper {
+    background-image: url(pictures/Paper2.png);
+    background-size: 100% 100%;
+}
+
+#compScissors {
+    background-image: url(pictures/Scissors2.png);
+    background-size: 100% 100%;
+}
+
+#playContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#playButton {
+    width: 150px;
+    font-size: 14px;
+    margin-top: 40px;
+    font-weight: bold;
+    border-width: 5px;
+}
+
+.log {
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 20px;
+}
+
+.computerSelect {
+    border-color:#ffc600;
+    box-shadow: 0 0 10px #ffc600;
+}
