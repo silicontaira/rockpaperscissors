@@ -51,16 +51,19 @@ button {
 #rock:hover {
     box-shadow: 0 0 1rem #ffc600;
     transform: scale(1.05);
+    background-color: blue;
 }
 
 #paper:hover {
     box-shadow: 0 0 1rem #ffc600;
     transform: scale(1.05);
+    background-color: blue;
 }
 
 #scissors:hover {
     box-shadow: 0 0 1rem #ffc600;
     transform: scale(1.05);
+    background-color: blue;
 }
 
 #compRock {
@@ -118,6 +121,7 @@ button {
     border-color:#ffc600;
     box-shadow: 0 0 10px #ffc600;
     transform: scale(1.1);
+    background-color: blue;
 }
 
 #player {
