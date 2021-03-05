@@ -2,6 +2,7 @@ body {
     background-color: black;
 }
 h1 {
+    margin-top: 50px;
     text-align: center;
     color: white;
     font-size: 40px;
@@ -11,7 +12,9 @@ h1 {
     text-align: center;
     color: white;
     font-size: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
+    transition: 0.5s ease;
+    padding-top: 5px;
 }
 
 .buttons {
@@ -47,14 +50,17 @@ button {
 
 #rock:hover {
     box-shadow: 0 0 1rem #ffc600;
+    transform: scale(1.05);
 }
 
 #paper:hover {
     box-shadow: 0 0 1rem #ffc600;
+    transform: scale(1.05);
 }
 
 #scissors:hover {
     box-shadow: 0 0 1rem #ffc600;
+    transform: scale(1.05);
 }
 
 #compRock {
@@ -85,6 +91,22 @@ button {
     border-width: 5px;
 }
 
+.player {
+    border-color: white;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 10px 10px 0px 10px;
+}
+
+.comp {
+    border-color: white;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 10px 10px 0px 10px;
+    transition: 1.5s ease;
+}
 .log {
     color: white;
     text-align: center;
@@ -95,4 +117,31 @@ button {
 .computerSelect {
     border-color:#ffc600;
     box-shadow: 0 0 10px #ffc600;
+    transform: scale(1.1);
+}
+
+#player {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+
+.scoring {
+    transform: scale(1.3);
+}
+
+.computer {
+    transition: 1.5s ease;
+}
+
+.rnd {
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    padding-bottom: 0px;
+    padding-top: 5px;
+}
+
+#rndCount {
+    margin: 0px;
 }

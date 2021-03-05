@@ -7,23 +7,31 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div class="rnd">
+            <p id="rndCount">Round: 0</p>
+        </div>
         <div class="score">
-            <p>Score: 0 - 0 </p>
+            <p id='scoreCount'>Score: 0 - 0 </p>
         </div>
         <div class="buttons">
-            <div class="playerButtons">
-                <button id='rock'></button>
-                <button id='paper'></button>
-                <button id='scissors'></button>
+            <div class="player">
+                <div class = "playerButtons">
+                    <button  id='rock'></button>
+                    <button  id='paper'></button>
+                    <button  id='scissors'></button>
+                </div>
+                <p id='player'>Player</p>
             </div>
-            <div class="compButtons">
-                <button id='compRock'></button>
-                <button id='compPaper'></button>
-                <button id='compScissors'></button>
+            <div class='comp'>
+                <div class = 'compButtons'>
+                    <button class='computer' data-id='rock' id='compRock'></button>
+                    <button class='computer' data-id='paper' id='compPaper'></button>
+                    <button class='computer' data-id='scissors' id='compScissors'></button>
+                </div>
+                <p id='player'>Computer</p>
             </div>
         </div>
         <div class="log"></div>
-        
     </body>
 </html>
 
@@ -31,27 +39,46 @@
     //Main Code
     let playerScore = 0;
     let computerScore = 0;
-    let p = document.querySelector('p');
+    let roundCnt = 0;
+    let p = document.querySelector('#scoreCount');
+    let rnd = document.querySelector('#rndCount');
     let logP = document.createElement('p');
-    const button = document.querySelector('.buttons');
+    let score = document.querySelector('.score');
+    let comps = Array.from(document.querySelectorAll('.computer'));
+
+    const button = document.querySelector('.playerButtons');
     const body = document.querySelector('body');
+
     const playContainer = document.createElement('div');
     playContainer.setAttribute('id', "playContainer");
+
     const playButton = document.createElement('button');
     playButton.setAttribute('id', 'playButton');
+
     const log = document.querySelector('.log');
+
+    score.addEventListener('transitionend', removeTransition);
+    comps.forEach(computer => computer.addEventListener('transitionend', removeTransition));
+
     button.addEventListener('click', playRound);
     playButton.addEventListener('click', resetGame);
+    
+
 
     //Functions
     function playRound(e) {
         let playerSelection = e.target.id.toLowerCase();
         let computerSelection = computerPlay().toLowerCase();
-        console.log(playerSelection);
+        const compSelect = document.querySelector(`button[data-id=${computerSelection}]`);
         
         if (playerScore < 5 && computerScore < 5) {
+                compSelect.classList.add('computerSelect');
             let result = playRps(playerSelection, computerSelection);
-            p.textContent = `Score: ${playerScore} - ${computerScore}`;
+            if (result !== "You tied!") {
+                p.textContent = `Score: ${playerScore} - ${computerScore}`;
+                score.classList.add('scoring');
+            }
+            rnd.textContent = `Round: ${roundCnt}`;
             logP.textContent = result;
             log.appendChild(logP);
             if (playerScore == 5 || computerScore == 5) {
@@ -78,10 +105,10 @@
 
     function resetGame(e) {
         playerScore = 0;
-                computerScore = 0;
-                p.textContent = `Score: ${playerScore} - ${computerScore}`;
-                playContainer.removeChild(playButton);
-                log.removeChild(logP);
+        computerScore = 0;
+        p.textContent = `Score: ${playerScore} - ${computerScore}`;
+        playContainer.removeChild(playButton);
+        log.removeChild(logP);
     }
     function computerPlay() {
             let rpsSelect = Math.floor(Math.random() * Math.floor(3));
@@ -101,42 +128,66 @@
             let computerSelect = computerSelection.toLowerCase();
             while (playerSelect == 'rock') {
                 if (playerSelect == computerSelect) {
+                    roundCnt++;
                     return "You tied!";
                 }
                 else if (computerSelect == 'paper') {
-                    computerScore += 1;
+                    computerScore ++;
+                    roundCnt++;
                     return "You Lose! Paper wraps Rock";
                 }
                 else {
-                    playerScore += 1;
+                    playerScore ++;
+                    roundCnt++;
                     return "You Win! Rock smashes Scissors";
                 }
             }
             while (playerSelect == 'paper') {
                 if (playerSelect == computerSelect) {
+                    roundCnt++;
                     return "You tied!";
                 }
                 else if (computerSelect == 'scissors') {
-                    computerScore += 1;
+                    computerScore ++;
+                    roundCnt++;
                     return "You Lose! Scissors cuts Paper";
                 }
                 else {
-                    playerScore += 1;
+                    playerScore ++;
+                    roundCnt++;
                     return "You Win! Paper wraps Rock";
                 }
             }
             while (playerSelect == 'scissors') {
                 if (playerSelect == computerSelect) {
+                    roundCnt++;
                     return "You tied!";
                 }
                 else if (computerSelect == 'rock') {
-                    computerScore += 1;
+                    computerScore ++;
+                    roundCnt++;
                     return "You Lose! Rock smashes Scissors";
                 }
                 else {
-                    playerScore += 1;
+                    playerScore ++;
+                    roundCnt++;
                     return "You Win! Scissors cuts Paper";
                 }
             }
+    }
+
+    function removeTransition(e) {
+        if (e.propertyName !== 'transform') return;
+        this.classList.remove('scoring');
+        this.classList.remove('computerSelect');
+        console.log(e);
+    }
+
+    function addTransition(e) {
+        if (e.propertyName !== 'transform') return;
+        this.classList.add('computerSelect');
+    }
+    function test(e) {
+        console.log(e);
     }
 </script>
