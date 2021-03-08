@@ -40,6 +40,7 @@
     let playerScore = 0;
     let computerScore = 0;
     let roundCnt = 0;
+    let count = 0;
     let p = document.querySelector('#scoreCount');
     let rnd = document.querySelector('#rndCount');
     let logP = document.createElement('p');
@@ -58,7 +59,7 @@
     const log = document.querySelector('.log');
 
     score.addEventListener('transitionend', removeTransition);
-    comps.forEach(computer => computer.addEventListener('transitionend', removeTransition));
+    comps.forEach(computer => computer.addEventListener('transitionend', removeTransitionComp));
 
     button.addEventListener('click', playRound);
     playButton.addEventListener('click', resetGame);
@@ -70,6 +71,7 @@
         let playerSelection = e.target.id.toLowerCase();
         let computerSelection = computerPlay().toLowerCase();
         const compSelect = document.querySelector(`button[data-id=${computerSelection}]`);
+        button.classList.add('freeze');
         
         if (playerScore < 5 && computerScore < 5) {
                 compSelect.classList.add('computerSelect');
@@ -106,7 +108,9 @@
     function resetGame(e) {
         playerScore = 0;
         computerScore = 0;
+        roundCnt = 0;
         p.textContent = `Score: ${playerScore} - ${computerScore}`;
+        rnd.textContent = `Round: ${roundCnt}`;
         playContainer.removeChild(playButton);
         log.removeChild(logP);
     }
@@ -179,15 +183,22 @@
     function removeTransition(e) {
         if (e.propertyName !== 'transform') return;
         this.classList.remove('scoring');
-        this.classList.remove('computerSelect');
-        console.log(e);
     }
 
+    function removeTransitionComp(e) {
+        if (e.propertyName !== 'transform') return;
+        this.classList.remove('computerSelect');
+        if (count < 1) {  
+            count++;
+        }
+        else {
+            button.classList.remove('freeze');
+            count = 0;
+        }
+        
+    }
     function addTransition(e) {
         if (e.propertyName !== 'transform') return;
         this.classList.add('computerSelect');
-    }
-    function test(e) {
-        console.log(e);
     }
 </script>

@@ -94,6 +94,12 @@ button {
     border-width: 5px;
 }
 
+#playButton:hover {
+    box-shadow: 0 0 1rem #ffc600;
+    transform: scale(1.05);
+    background-color: blue;
+}
+
 .player {
     border-color: white;
     border-width: 2px;
@@ -135,7 +141,7 @@ button {
 }
 
 .computer {
-    transition: 1.5s ease;
+    transition: 1s ease;
 }
 
 .rnd {
@@ -148,4 +154,8 @@ button {
 
 #rndCount {
     margin: 0px;
+}
+
+.freeze {
+    pointer-events: none;
 }
